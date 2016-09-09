@@ -1,0 +1,37 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "bluebird": "^3.4.1",
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
+    "debug": "^2.2.0",
+    "express": "^4.14.0",
+    "http-errors": "^1.5.0",
+    "jsonwebtoken": "^7.1.9",
+    "mongoose": "^4.5.7",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "nodemon": "^1.10.0",
+    "superagent": "^2.1.0",
+    "superagent-promise-plugin": "^3.2.0",
+    "superagent-use": "0.0.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "watch": "DEBUG=note* ./node_modules/nodemon/bin/nodemon.js ./server.js",
+    "test": "./node_modules/mocha/bin/mocha ./test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
