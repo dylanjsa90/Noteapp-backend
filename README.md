@@ -1,4 +1,4 @@
-# note app API
+# note app API modified from the class repo (https://github.com/codefellows/seattle-javascript-401d8)
 
 # Resources
 * List

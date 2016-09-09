@@ -12,8 +12,7 @@ let authRouter = module.exports = exports = Router();
 
 authRouter.post('/signup', jsonParser, (req, res, next) => {
   let newUser = new User();
-  newUser.basic.email = req.body.email;
-  newUser.username = req.body.username || req.body.email;
+  newUser.username = req.body.username;
   newUser.generateHash(req.body.password)
     .then((tokenData) => {
       newUser.save().then(() => {res.json(tokenData)}, ErrorHandler(400, next))
@@ -22,7 +21,7 @@ authRouter.post('/signup', jsonParser, (req, res, next) => {
 
 authRouter.get('/signin', BasicHTTP, (req, res, next) => {
   let authError = ErrorHandler(401, next, 'Authenticat Seyzz no!');
-  User.findOne({'basic.email': req.auth.username}) 
+  User.findOne({'username': req.auth.username}) 
     .then((user) => {
       if (!user) return authError(new Error('No Such User'));
       user.comparePassword(req.auth.password)

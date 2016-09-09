@@ -22,9 +22,9 @@ noteRouter.post('/note', jsonParser, function(req, res, next){
     .then( list => {
       list.addNote(req.body)
         .then( note => res.json(note))
-        .catch(next)
+        .catch(next);
     }).catch(err => next(createError(404, 'list does not exist')));
-})
+});
 
 noteRouter.get('/note', function(req,res,next){
   debug('GET /api/note/');
@@ -42,7 +42,7 @@ noteRouter.put('/note/:id', jsonParser, function(req, res, next){
   debug('PUT /api/note/:id');
   Note.findByIdAndUpdate( req.params.id, req.body, {new: true})
     .then( note => res.send(note))
-    .catch(next)
+    .catch(next);
 });
 
 noteRouter.delete('/note/:id', jsonParser, function(req, res, next){
@@ -50,11 +50,11 @@ noteRouter.delete('/note/:id', jsonParser, function(req, res, next){
   Note.findById(req.params.id)
     .then( note => {
       console.log('note', req.params.id);
-      return List.findById(note.listId)
+      return List.findById(note.listId);
     })
     .then( list => {
-      return list.removeNoteById(req.params.id)
+      return list.removeNoteById(req.params.id);
     })
     .then( note => res.json(note))
-    .catch(next)
+    .catch(next);
 });

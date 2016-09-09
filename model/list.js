@@ -27,7 +27,7 @@ listSchema.methods.addNote = function(data){
         return this.save(); 
       })
       .then(() => resolve(result))
-      .catch(reject)
+      .catch(reject);
   });
 };
 
@@ -36,14 +36,14 @@ listSchema.methods.removeNoteById = function(noteId) {
     this.notes.filter( value => {
       if (value === noteId) return false;
       return true;
-    })
+    });
     this.save()
     .then(() => {
-      return Note.findByIdAndRemove(noteId)
+      return Note.findByIdAndRemove(noteId);
     })
     .then( note => resolve(note))
-    .catch(reject)
-  })
-}
+    .catch(reject);
+  });
+};
 
 module.exports = mongoose.model('List', listSchema);
