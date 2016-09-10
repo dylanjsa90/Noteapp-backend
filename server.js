@@ -1,5 +1,5 @@
 'use strict';
-
+process.env.APP_SECRET='secret';
 if (!process.env.APP_SECRET) throw new Error('No Secret Key');
 // EXPORT APP_SECRET="....."
 
@@ -15,9 +15,9 @@ const cors = require('cors');
 
 // app modules
 const handleError = require('./lib/handle-error');
+const authRouter = require('./router/auth_router');
 const listRouter = require('./router/list-router');
 const noteRouter = require('./router/note-router');
-const authRouter = require('./router/auth_router');
 
 // module constants
 const app = express();
@@ -41,7 +41,7 @@ app.use('/api', noteRouter);
 app.all('*', function(req, res, next){
   debug('hit 404 route');
   next(createError(404, `ERROR: ${req.method} :: ${req.url} is not a route`));
-})
+});
 
 // express error handling
 app.use(handleError);
