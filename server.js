@@ -1,10 +1,6 @@
 'use strict';
-process.env.APP_SECRET='secret';
 if (!process.env.APP_SECRET) throw new Error('No Secret Key');
-// EXPORT APP_SECRET="....."
 
-// node modules
-// npm modules
 const morgan = require('morgan');
 const express = require('express');
 const mongoose = require('mongoose');
