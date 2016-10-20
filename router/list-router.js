@@ -32,8 +32,8 @@ listRouter.get('/list', function(req,res,next){
 
 listRouter.get('/list/user/:user', function(req,res,next){
   debug('GET /api/user/' + req.params.user);
-  User.find({user: req.params.user})
-    .populate('lists')
+  List.find({user: req.params.user})
+    .populate('notes')
     .then( lists => res.send(lists)).catch(next);
 });
 
