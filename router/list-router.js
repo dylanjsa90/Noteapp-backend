@@ -14,6 +14,7 @@ let listRouter = module.exports = exports = new Router();
 
 // module logic
 listRouter.post('/list', jsonParser, jwtAuth, function(req, res, next){
+  console.log(req.body);
   debug('POST /api/list');
   if (!req.body.name ) 
     return next(createError(400, 'ERROR: list requires name field'));
@@ -55,7 +56,6 @@ listRouter.delete('/list/:id', jsonParser, function(req, res, next){
   let result;
   debug('PUT /api/list/:id');
   List.findByIdAndRemove(req.params.id)
-});
     .then( list => {
       result = list;
       return Note.remove({listId: list._id});
