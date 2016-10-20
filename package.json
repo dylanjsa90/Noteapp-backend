@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "directories": {
+    "start": "node server.js",
     "test": "test"
   },
   "dependencies": {

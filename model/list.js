@@ -13,6 +13,7 @@ mongoose.Promise = Promise;
 const listSchema = mongoose.Schema({
   name: {type: String, required: true},
   notes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Note', unique: true}],
+  user: [{type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}]
 });
 
 listSchema.methods.addNote = function(data){
