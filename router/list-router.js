@@ -7,6 +7,7 @@ const debug = require('debug')('note:list-router');
 
 const List = require('../model/list');
 const Note = require('../model/note');
+const User = require('../model/user');
 const jwtAuth = require('../lib/jwt_auth');
 
 let listRouter = module.exports = exports = new Router();
@@ -25,6 +26,13 @@ listRouter.get('/list', function(req,res,next){
   debug('GET /api/list/');
   List.find({})
     .populate('notes')
+    .then( lists => res.send(lists)).catch(next);
+});
+
+listRouter.get('/list/user/:user', function(req,res,next){
+  debug('GET /api/user/' + req.params.user);
+  User.find({user: req.params.user})
+    .populate('lists')
     .then( lists => res.send(lists)).catch(next);
 });
 
@@ -47,6 +55,7 @@ listRouter.delete('/list/:id', jsonParser, function(req, res, next){
   let result;
   debug('PUT /api/list/:id');
   List.findByIdAndRemove(req.params.id)
+});
     .then( list => {
       result = list;
       return Note.remove({listId: list._id});
