@@ -13,12 +13,13 @@ mongoose.Promise = Promise;
 const listSchema = mongoose.Schema({
   name: {type: String, required: true},
   notes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Note', unique: true}],
+  user: [{type: String, required: true}]
 });
 
 listSchema.methods.addNote = function(data){
   let result;
   return new Promise((resolve, reject) => {
-    if (!data.name || !data.content || !data.listId)
+    if (!data.content || !data.listId)
       return reject(createError(400, 'note requires name, content, and listId'));
     new Note(data).save()
       .then(note => {

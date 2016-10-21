@@ -8,7 +8,6 @@ const debug = require('debug')('note:note');
 Promise.promisifyAll(mongoose);
 
 let noteSchema = Schema({
-  name: {type: String, required: true},
   listId: {type: Schema.Types.ObjectId, required: true},
   content: {type: String, require: true},
 });
