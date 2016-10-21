@@ -6,7 +6,6 @@ const debug = require('debug')('note:list');
 const Note = require('./note');
 const createError = require('http-errors');
 
-//Promise.promisifyAll(mongoose);
 
 mongoose.Promise = Promise;
 
