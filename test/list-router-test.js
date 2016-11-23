@@ -31,8 +31,8 @@ describe('testing list routes', function(){
         expect(data.name).to.eql('groceries');
         done();
       })
-      .catch(done)
-    })
+      .catch(done);
+    });
   });
 
   describe('testing GET /api/list', function(){
@@ -40,8 +40,8 @@ describe('testing list routes', function(){
       Promise.all([
         new List({name: 'first list'}).save(),
         new List({name: 'second list'}).save(),
-      ]).then(() => done()).catch(done)
-    })
+      ]).then(() => done()).catch(done);
+    });
 
     after((done) => {
       List.remove({}).then( () => done()).catch(done);
@@ -56,8 +56,8 @@ describe('testing list routes', function(){
         expect(data[1].name).to.eql('second list');
         done();
       })
-      .catch(done)
-    })
+      .catch(done);
+    });
   });
 
   describe('testing GET /api/list/:id', function(){
@@ -69,22 +69,22 @@ describe('testing list routes', function(){
             name: 'first note',
             content: 'test data',
             listId: this.tempList._id,
-          })
+          });
         }).then(() => {
           return this.tempList.addNote({
             name: 'second note',
             content: 'test data',
             listId: this.tempList._id,
-          })
+          });
         })
         .then(() => done())
-        .catch(done)
+        .catch(done);
     });
 
     after((done) => {
       Promise.all([
-       List.remove({}),
-       Note.remove({}),
+        List.remove({}),
+        Note.remove({}),
       ])
       .then( () => done()).catch(done);
     });
@@ -98,8 +98,8 @@ describe('testing list routes', function(){
         expect(data.notes[1].name).to.eql('second note');
         done();
       })
-      .catch(done)
-    })
+      .catch(done);
+    });
   });
 
   describe('testing PUT /api/list/:id', function(){
@@ -108,8 +108,8 @@ describe('testing list routes', function(){
       .then((list) => {
         this.tempList = list;
         done();
-      }).catch(done)
-    })
+      }).catch(done);
+    });
 
     after((done) => {
       List.remove({}).then( () => done()).catch(done);
@@ -125,8 +125,8 @@ describe('testing list routes', function(){
         expect(data.name).to.eql('todo list');
         done();
       })
-      .catch(done)
-    })
+      .catch(done);
+    });
   });
 
   describe('testing DELETE /api/list/:id', function(){
@@ -135,8 +135,8 @@ describe('testing list routes', function(){
       .then((list) => {
         this.tempList = list;
         done();
-      }).catch(done)
-    })
+      }).catch(done);
+    });
 
     after((done) => {
       List.remove({}).then( () => done()).catch(done);
@@ -149,7 +149,7 @@ describe('testing list routes', function(){
         expect(data.name).to.eql('example list');
         done();
       })
-      .catch(done)
-    })
+      .catch(done);
+    });
   });
-})
+});

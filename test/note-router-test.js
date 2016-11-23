@@ -22,8 +22,8 @@ describe('testing note routes', function(){
         .then( list => {
           this.tempList = list;
           done();
-        }).catch(done)
-    })
+        }).catch(done);
+    });
 
     after((done) => {
       Note.remove({}).then( () => done()).catch(done);
@@ -42,8 +42,8 @@ describe('testing note routes', function(){
         expect(data.listId).to.eql(`${this.tempList._id}`);
         done();
       })
-      .catch(done)
-    })
+      .catch(done);
+    });
   });
 
   describe('testing GET /api/note', function(){
@@ -61,11 +61,11 @@ describe('testing note routes', function(){
               content: 'test data',
               listId: list._id,
             })
-          ])
+          ]);
         })
       .then(() => done())
-      .catch(done)
-    })
+      .catch(done);
+    });
 
     after((done) => {
       Note.remove({}).then( () => done()).catch(done);
@@ -80,8 +80,8 @@ describe('testing note routes', function(){
         expect(data[1].name).to.eql('second note');
         done();
       })
-      .catch(done)
-    })
+      .catch(done);
+    });
   });
 
   describe('testing GET /api/note/:id', function(){
@@ -97,9 +97,9 @@ describe('testing note routes', function(){
           .then((note) => {
             this.tempNote = note;
             done();
-          }).catch(done)
-        }).catch(done)
-    })
+          }).catch(done);
+        }).catch(done);
+    });
 
     after((done) => {
       Note.remove({}).then( () => done()).catch(done);
@@ -114,8 +114,8 @@ describe('testing note routes', function(){
         expect(data.listId).to.eql(`${this.tempList._id}`);
         done();
       })
-      .catch(done)
-    })
+      .catch(done);
+    });
   });
 
   describe('testing PUT /api/note/:id', function(){
@@ -131,9 +131,9 @@ describe('testing note routes', function(){
           .then((note) => {
             this.tempNote = note;
             done();
-          }).catch(done)
-        }).catch(done)
-    })
+          }).catch(done);
+        }).catch(done);
+    });
 
     after((done) => {
       Note.remove({}).then( () => done()).catch(done);
@@ -149,8 +149,8 @@ describe('testing note routes', function(){
         expect(data.name).to.eql('todo note');
         done();
       })
-      .catch(done)
-    })
+      .catch(done);
+    });
   });
 
   describe('testing DELETE /api/note/:id', function(){
@@ -166,9 +166,9 @@ describe('testing note routes', function(){
           .then((note) => {
             this.tempNote = note;
             done();
-          }).catch(done)
-        }).catch(done)
-    })
+          }).catch(done);
+        }).catch(done);
+    });
 
     after((done) => {
       Note.remove({}).then( () => done()).catch(done);
@@ -181,7 +181,7 @@ describe('testing note routes', function(){
         expect(data.name).to.eql('example');
         done();
       })
-      .catch(done)
-    })
+      .catch(done);
+    });
   });
-})
+});
