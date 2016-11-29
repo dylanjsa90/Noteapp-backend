@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 let userSchema = mongoose.Schema({
   username: {type: String, required: true, unique: true},
+  email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   lists: [{type: mongoose.Schema.Types.ObjectId, ref: 'List', unique: true}],
   role: {type: String, default: 'basic'}

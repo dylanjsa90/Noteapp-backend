@@ -1,4 +1,5 @@
 'use strict';
+process.env.APP_SECRET='devKey';
 if (!process.env.APP_SECRET) throw new Error('No Secret Key');
 
 const morgan = require('morgan');

@@ -7,6 +7,7 @@ const User = require('../model/user');
 const BasicHTTP = require('../lib/basic_http');
 const authzn = require('../lib/authorization');
 const jwt_auth = require('../lib/jwt_auth');
+const transporter = require('../lib/mailer');
 
 let authRouter = module.exports = exports = Router();
 
@@ -27,6 +28,22 @@ authRouter.get('/signin', BasicHTTP, (req, res, next) => {
       user.comparePassword(req.auth.password)
         .then(res.json.bind(res), authError);
     }, authError);
+});
+
+authRouter.post('/forgotPassword', jsonParser, (req, res, next) => {
+  User.findOne({'email': req.body.email}).then((user) => {
+    let mailOptions = {
+      from: 'Task Manager <taskmanagerherokuapp@gmail.com>',
+      to: user.email,
+      subject: 'Forgot Password',
+      text: 'The account with email ' + user.email + 'requested a reset password link',
+      html: '<p>The account with email ' + user.email + 'requested a reset password link.</p>'
+    };
+    transporter.sendMail(mailOptions, function(err, data) {
+      if (err) next(err);
+    });
+
+  })
 });
 
 authRouter.put('/addrole/:userid', jsonParser, jwt_auth, authzn(), (req, res, next) => {
